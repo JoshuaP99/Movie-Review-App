@@ -61,4 +61,22 @@
   margin-left: auto;
   margin-right: auto;
   width: 25%;
+  border: 5px solid rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+.center-text{
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.centered{
+  width: 5px;
+}
+
+.textboxid
+{
+    height:200px;
+    font-size:14pt;
 }
