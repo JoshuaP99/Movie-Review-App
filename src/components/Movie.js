@@ -1,20 +1,23 @@
 import React from 'react';
-import Review from './Review';
+import ReviewList from './ReviewList';
 
 export default class Movie extends React.Component{
-    render(){
-        return(
-            <div className='card'>
-                <h3 className='center-text'>{this.props.name}</h3>
-                <img src={this.props.image} className="center"></img>
-                <div className='card-body'>
-                    <h2 className='center-text'>{this.props.release}</h2>
-                    <p className='center-text'>{this.props.synopsis}</p>
-                </div>
-                <div className='card-body'>
-                    <Review></Review>
-                </div>
-            </div>            
-        )
-    }
+render() {
+    return (
+        <div className="card" style={{backgroundColor: "black", color: "white"}}>
+            <img src={this.props.movie.image} className="center"></img>
+            <div className="card-title">
+                <h2 className='center-text'>{this.props.movie.name}</h2>
+            </div>
+            <div className="card-text">
+                <p className='center-text'>{this.props.movie.synopsis}</p>
+            </div>
+            <div className="card" style={{backgroundColor: "black", color: "white"}}>
+                <br />
+                <h4 className='center-text'>User Reviews</h4>
+                <ReviewList reviews={this.props.movie.reviews} />
+            </div>
+      </div>
+    );
+  }
 }

@@ -4,9 +4,7 @@ import './index.css';
 import './App.css'
 import reportWebVitals from './reportWebVitals';
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
-import ReviewList from './components/ReviewList'
 import MovieList from './components/MovieList';
-import Stars from './components/Stars';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
