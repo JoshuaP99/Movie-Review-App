@@ -2,20 +2,65 @@ import React from 'react';
 import '../App.css';
 
 export default class Stars extends React.Component{
-    render(){
-        return(
-          <div class="dropdown col-lg mx-auto">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Rating
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <button>1 Star</button>
-              <li><a class="dropdown-item">1 Star</a></li>
-              <li><a class="dropdown-item" >1 Star</a></li>
-              <li><a class="dropdown-item" >1 Star</a></li>
-              <li><a class="dropdown-item" >1 Star</a></li>
-            </ul>
-          </div>
-        )
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        stars: [],
+        rating: 0,
+        hovered: 0,
+        fullStar: "\u{2605}",
+        emptyStar: "\u{2606}"
+    };
+    for (let i = 0; i < 5; i++) {
+      this.state.stars.push(i + 1);
     }
+  }
+  
+  changeRating(newRating) {
+    this.setState({
+      rating: newRating
+    });
+    
+    if (this.props.onChange)
+    this.props.onChange(newRating);
+  }
+  
+  hoverRating(rating) {
+    this.setState({
+      hovered: rating
+    });
+  }
+  
+  clearStars() {
+    this.setState({
+      rating: 0
+    })
+  }
+    
+  render(){
+    const {stars, rating, hovered, emptyStar, fullStar} = this.state;
+
+    return(
+      <div>
+        <div className="rating" style={{ fontSize: '1em', color: "yellow" }}>
+          {stars.map((star,index) => {
+            return (
+              <span key={index}
+                style={{ cursor: 'pointer' }}
+                onClick={() => { this.changeRating(star) }}
+                onMouseEnter={() => { this.hoverRating(star) }}
+                onMouseLeave={() => { this.hoverRating(0) }}>
+                {rating < star ?
+                  hovered < star ? emptyStar : fullStar
+                  :
+                  fullStar
+                }
+              </span>
+            );
+        })}
+        </div>
+      </div>
+    )
+  }
 }

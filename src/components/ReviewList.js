@@ -1,13 +1,25 @@
 import React from "react";
-import Stars from "./Stars";
+import Review from "./Review";
+import ReviewForm from "./ReviewForm";
 
 export default class ReviewList extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            reviews:[],
+        }
+    }
+
+    addReview = (newReview) => {
+        this.setState(state => ({ reviews: state.reviews.concat( [ newReview ] ) }) );
+    } 
+    
     render(){
         return(
-            <div className="card">
-                <textarea className="form-control" placeholder="Write a Review" value={this.props.review}></textarea>
-                <Stars></Stars>
-                <button className='btn btn-primary col-2 mx-auto' value={this.props.input}>Post Review</button>
+            <div className="container">
+                {this.props.reviews.map( (review,index) => <Review review={review} key={index} /> )}
+                {this.state.reviews.map( (review,index) => <Review review={review} key={index} /> )}
+                <ReviewForm onSubmit={this.addReview} />
             </div>
 
         )
